@@ -65,12 +65,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/tasks",
-					"protocol": "http",
+					"raw": "{{baseUrl}}/api/tasks",
 					"host": [
-						"localhost"
+						"{{baseUrl}}"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"tasks"
@@ -135,12 +133,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/tasks",
-					"protocol": "http",
+					"raw": "{{baseUrl}}/api/tasks",
 					"host": [
-						"localhost"
+						"{{baseUrl}}"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"tasks"
@@ -204,12 +200,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/tasks",
-					"protocol": "http",
+					"raw": "{{baseUrl}}/api/tasks",
 					"host": [
-						"localhost"
+						"{{baseUrl}}"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"tasks"
@@ -273,12 +267,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/tasks",
-					"protocol": "http",
+					"raw": "{{baseUrl}}/api/tasks",
 					"host": [
-						"localhost"
+						"{{baseUrl}}"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"tasks"
@@ -341,12 +333,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/tasks",
-					"protocol": "http",
+					"raw": "{{baseUrl}}/api/tasks",
 					"host": [
-						"localhost"
+						"{{baseUrl}}"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"tasks"
