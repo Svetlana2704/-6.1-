@@ -1,0 +1,452 @@
+{
+	"info": {
+		"_postman_id": "0d94a3a1-fe9c-4616-8d81-8470064c20bc",
+		"name": "Sqlverifier ДЗ 6.2 Ляпунцова",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Tests\" tab**\n\nTests help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/b5f280a7-4b09-48ec-857f-0a7ed99d7ef8/U2NyZWVuc2hvdCAyMDIzLTAzLTI3IGF0IDkuNDcuMjggUE0ucG5n\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) in \"Tests\" to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "32697811-0d94a3a1-fe9c-4616-8d81-8470064c20bc"
+	},
+	"item": [
+		{
+			"name": "Create task",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3033da57-caed-4988-84bf-08dfbb8fbf68",
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "49146598-9bb3-4922-ac15-a319aded5355",
+						"exec": [
+							"let jsonBody = JSON.parse(responseBody)\r",
+							"console.log(jsonBody.id)\r",
+							"pm.environment.set(\"id\", jsonBody.id);\r",
+							"\r",
+							"\r",
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Media type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Media type\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "a85920fb-497f-4111-9778-7d4ef440fb13",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcxODQzMjU2NiwiYXV0aCI6IlJPTEVfQURNSU4iLCJpYXQiOjE3MTU4NDA1NjZ9.GidZ37adSlZKrPlD6fAdK35IEU7dfEYnNrCq9rbT3hh8wPoedFRbTXXtWrIF6BuJwppEhU9ivO_YFC_u5nCx2Q",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"text\": \"Однажды в студеную зимнюю пору\",\r\n  \"answer\": \"Я из лесу вышел\",\r\n  \"title\": \"Задача1\"\r\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/tasks",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get task",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "35f79ffa-caa5-49a9-bf9a-a354a41d8bda",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Media type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Media type\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "2c2c080b-99f1-49ea-95d6-4a3d93cdbdc3",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcxODQzMjU2NiwiYXV0aCI6IlJPTEVfQURNSU4iLCJpYXQiOjE3MTU4NDA1NjZ9.GidZ37adSlZKrPlD6fAdK35IEU7dfEYnNrCq9rbT3hh8wPoedFRbTXXtWrIF6BuJwppEhU9ivO_YFC_u5nCx2Q"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/api/tasks/{{id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"tasks",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update task",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ddee5223-95a4-4746-bee4-7ff8c8e8c3f4",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Media type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Media type\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "74072b4b-a6c1-400b-9b3f-3a93220e0259",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcxODQzMjU2NiwiYXV0aCI6IlJPTEVfQURNSU4iLCJpYXQiOjE3MTU4NDA1NjZ9.GidZ37adSlZKrPlD6fAdK35IEU7dfEYnNrCq9rbT3hh8wPoedFRbTXXtWrIF6BuJwppEhU9ivO_YFC_u5nCx2Q"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": {{id}},\r\n  \"text\": \"dYJdfz h\",\r\n  \"answer\": \"dfghgj\",\r\n  \"title\": \"fghgjk\"\r\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/tasks/{{id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"tasks",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Partial update task",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "30d7cf18-7172-40a8-9957-77a648d07883",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Media type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Media type\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "f7734fd4-19aa-4e83-bdf5-d4b9e0d339bf",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcxODQzMjU2NiwiYXV0aCI6IlJPTEVfQURNSU4iLCJpYXQiOjE3MTU4NDA1NjZ9.GidZ37adSlZKrPlD6fAdK35IEU7dfEYnNrCq9rbT3hh8wPoedFRbTXXtWrIF6BuJwppEhU9ivO_YFC_u5nCx2Q"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": {{id}},\r\n  \"text\": \"string\",\r\n  \"answer\": \"string\",\r\n  \"title\": \"string\"\r\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/tasks/{{id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"tasks",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All tasks",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b385729b-b1f7-4a32-92e2-7221f46e105b",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Media type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Media type\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "c6195c90-b795-4957-aed2-84e0502579c7",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcxODQzMjU2NiwiYXV0aCI6IlJPTEVfQURNSU4iLCJpYXQiOjE3MTU4NDA1NjZ9.GidZ37adSlZKrPlD6fAdK35IEU7dfEYnNrCq9rbT3hh8wPoedFRbTXXtWrIF6BuJwppEhU9ivO_YFC_u5nCx2Q"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/api/tasks",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete task",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d98872fa-3274-45bd-a0ed-4d3f19a81709",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"console.log(pm.collectionVariables.get(\"token\"));\r",
+							"console.log(pm.environment.get(\"id\"));\r",
+							"\r",
+							"pm.sendRequest({\r",
+							"    url: `http://localhost:8080/api/tasks/${pm.environment.get(\"id\")}`,\r",
+							"    method: 'GET',\r",
+							"    headers: {\r",
+							"        'Authorization': 'Bearer ' + pm.environment.get(\"token\")\r",
+							"    }\r",
+							"}, function (err, res) {\r",
+							"    pm.test(\"Task no longer exists\", function () {\r",
+							"        pm.expect(res.code).to.eql(404);\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "f33d0e73-0413-456a-9dec-95584b320f12",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcxODQzMjU2NiwiYXV0aCI6IlJPTEVfQURNSU4iLCJpYXQiOjE3MTU4NDA1NjZ9.GidZ37adSlZKrPlD6fAdK35IEU7dfEYnNrCq9rbT3hh8wPoedFRbTXXtWrIF6BuJwppEhU9ivO_YFC_u5nCx2Q"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/api/tasks/{{id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"tasks",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcxODU4MTM4NCwiYXV0aCI6IlJPTEVfQURNSU4iLCJpYXQiOjE3MTU5ODkzODR9.p9P4LfkxvL167PWW99X16ak5YlMsZTJdBV-JuH9MjzNp-PabQAmORG6OSR6bpTpzNzDPu-T8tiJje_GXDImsUA",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "cec2408d-4ea4-4371-be09-8322127626f3",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "7d5254db-69af-46b4-8ea7-a2052514c5f1",
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "5ff63c9f-7c38-485a-88d2-68f26226e7e2",
+			"key": "token",
+			"value": ""
+		}
+	]
+}
