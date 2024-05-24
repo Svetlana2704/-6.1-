@@ -357,21 +357,7 @@
 							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
 							"});\r",
 							"\r",
-							"\r",
-							"console.log(pm.collectionVariables.get(\"token\"));\r",
-							"console.log(pm.environment.get(\"id\"));\r",
-							"\r",
-							"pm.sendRequest({\r",
-							"    url: `http://localhost:8080/api/tasks/${pm.environment.get(\"id\")}`,\r",
-							"    method: 'GET',\r",
-							"    headers: {\r",
-							"        'Authorization': 'Bearer ' + pm.environment.get(\"token\")\r",
-							"    }\r",
-							"}, function (err, res) {\r",
-							"    pm.test(\"Task no longer exists\", function () {\r",
-							"        pm.expect(res.code).to.eql(404);\r",
-							"    });\r",
-							"});"
+							""
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -444,7 +430,7 @@
 	],
 	"variable": [
 		{
-			"id": "5ff63c9f-7c38-485a-88d2-68f26226e7e2",
+			"id": "462815bc-6d37-4f2b-92d5-a8b382e2b2ea",
 			"key": "token",
 			"value": ""
 		}

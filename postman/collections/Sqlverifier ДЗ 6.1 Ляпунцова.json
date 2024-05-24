@@ -27,7 +27,6 @@
 							"    pm.response.to.have.header(\"Content-Type\");\r",
 							"});\r",
 							"\r",
-							"\r",
 							""
 						],
 						"type": "text/javascript",
@@ -360,7 +359,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "81154338-9d78-4beb-ba93-8b09792bc5b8",
+				"id": "26a66efc-8aa1-4838-87e2-bdba0ef01e04",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -370,12 +369,20 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "4270cf50-d64e-4d66-8614-767d23b4a450",
+				"id": "b8d00028-fb68-43c1-b2fc-b481cc7ddc03",
 				"type": "text/javascript",
 				"exec": [
 					""
 				]
 			}
+		}
+	],
+	"variable": [
+		{
+			"id": "1f6ea3be-2e74-427a-8a58-06c5c8336f7f",
+			"key": "token",
+			"value": "",
+			"type": "string"
 		}
 	]
 }
